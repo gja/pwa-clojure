@@ -1,0 +1,15 @@
+(defproject pwa-clojure "0.1.1-SNAPSHOT"
+  :description "A simple example of to build a PWA app with clojurescript"
+  :source-paths ["src-clj"]
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [org.clojure/clojurescript "1.9.293"]
+                 [bidi "2.0.13"]
+                 [hiccup "1.0.4"]]
+  :plugins [[lein-cljsbuild "1.1.4"]
+            [lein-ring "0.8.7"]]
+  :cljsbuild {
+    :builds [{:source-paths ["src-cljs"]
+              :compiler {:output-to "resources/public/js/main.js"
+                         :optimizations :whitespace
+                         :pretty-print true}}]}
+  :ring {:handler pwa-clojure.routes/app})
