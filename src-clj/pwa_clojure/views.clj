@@ -1,6 +1,7 @@
 (ns pwa-clojure.views
   (:require [hiccup.page :refer [html5 include-js]]
             [pwa-clojure.components :as components]
+            [pwa-clojure.title :as title]
             [rum.core :as rum]))
 
 (defn layout [component title seo-fields]
@@ -15,6 +16,6 @@
 
 (defn pwa-page [handler {:keys [route-params]}]
   (let [data {:title "Hello, World!"}
-        component (components/pwa-component {:handler :home-page
+        component (components/pwa-component {:handler handler
                                              :data data})]
-    (layout component "Hello, World!" [])))
+    (layout component (title/title-for handler data) [])))
