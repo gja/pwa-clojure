@@ -10,5 +10,6 @@
      [:title "Hello World"]]
     [:body
      [:div#container
-      (rum/render-html (components/index-component "Hello, World!"))]
+      (rum/render-html (components/pwa-component {:handler :index
+                                                  :data {:title "Hello, World!"}}))]
      (include-js "/js/main.js")])})

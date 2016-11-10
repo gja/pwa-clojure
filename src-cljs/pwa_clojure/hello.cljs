@@ -10,8 +10,17 @@
 (defn- get-container []
   (-> js/window .-document (.getElementById "container")))
 
-(defn start-cljs-app []
-  (let [{:keys [handler]} (bidi/match-route routes/pwa-routes (get-current-path))]
-    (rum/mount (components/index-component (str handler "Hello, World!")) (get-container))))
+(defonce ^:private app-state (atom {}))
 
-(start-cljs-app)
+(rum/defc reactive-component < rum/reactive []
+  (components/pwa-component (rum/react app-state)))
+
+(defn ^:export start-cljs-app [data]
+  (let [{:keys [handler]} (bidi/match-route routes/pwa-routes (get-current-path))]
+    (reset! app-state {:handler handler :data data})
+    (rum/mount (reactive-component) (get-container))))
+
+(defn- test-clj-app []
+  (start-cljs-app {:title "Hello, World!"}))
+
+(test-clj-app)
