@@ -5,10 +5,10 @@
             [rum.core :as rum]))
 
 (defn- get-current-path []
-  (-> js/window .-location .-pathname))
+  js/window.location.pathname)
 
 (defn- get-container []
-  (-> js/window .-document (.getElementById "container")))
+  (.getElementById js/window.document "container"))
 
 (rum/defc reactive-component < rum/reactive []
   (pages/pwa-component (:handler (rum/react app-state/app-state))
