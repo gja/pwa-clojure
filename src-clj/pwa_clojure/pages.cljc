@@ -4,12 +4,11 @@
 
 (def pages
   {:home-page {:data-fn (constantly [[:movies]])
-               :component components/index-component
+               :component components/home-component
                :title-fn (constantly "Super Movies")}
    :movie-page {:data-fn #(vec [:movie :movie-id (:movie-id %)])
-                :component components/index-component
+                :component components/movie-component
                 :title-fn (constantly "Super Movie")}})
-
 
 (defn data-requirements [handler route-params]
   (let [data-fn (get-in pages [handler :data-fn])]
