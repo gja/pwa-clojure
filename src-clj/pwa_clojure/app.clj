@@ -6,8 +6,7 @@
             [pwa-clojure.views :as views]))
 
 (defn- pwa-route-handler [handler]
-  (case handler
-    :home-page views/home-page))
+  #(views/pwa-page handler %))
 
 (defn- api-route-handler [api]
   (fn [_]

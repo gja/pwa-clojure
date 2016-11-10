@@ -3,13 +3,18 @@
             [pwa-clojure.components :as components]
             [rum.core :as rum]))
 
-(defn home-page [_]
+(defn layout [component title seo-fields]
   {:body
    (html5
     [:head
-     [:title "Hello World"]]
+     [:title title]
+     (seq seo-fields)]
     [:body
-     [:div#container
-      (rum/render-html (components/pwa-component {:handler :home-page
-                                                  :data {:title "Hello, World!"}}))]
+     [:div#container (rum/render-html component)]
      (include-js "/js/main.js")])})
+
+(defn pwa-page [handler {:keys [route-params]}]
+  (let [data {:title "Hello, World!"}
+        component (components/pwa-component {:handler :home-page
+                                             :data data})]
+    (layout component "Hello, World!" [])))
