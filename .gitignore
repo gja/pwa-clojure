@@ -9,4 +9,5 @@ pom.xml.asc
 /.nrepl-port
 .hgignore
 .hg/
+/resources/public/service-worker.js
 /resources/public/js/main.js

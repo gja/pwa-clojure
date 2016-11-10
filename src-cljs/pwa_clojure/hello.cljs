@@ -1,5 +1,5 @@
 (ns pwa-clojure.hello
-  (:require
+  (:require [bidi.bidi :as bidi]
             [pwa-clojure.components :as components]
             [pwa-clojure.routes :as routes]
             [rum.core :as rum]))
@@ -10,9 +10,8 @@
 (defn- get-container []
   (-> js/window .-document (.getElementById "container")))
 
-(.debug js/console (get-container))
-
 (defn start-cljs-app []
-  (rum/mount (components/index-component "Hello, World!") (get-container)))
+  (let [{:keys [handler]} (bidi/match-route routes/pwa-routes (get-current-path))]
+    (rum/mount (components/index-component (str handler "Hello, World!")) (get-container))))
 
 (start-cljs-app)

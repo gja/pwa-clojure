@@ -11,6 +11,12 @@
   :cljsbuild
   {:builds [{:source-paths ["src-cljs"]
              :compiler {:output-to "resources/public/js/main.js"
-                        :optimizations :whitespace
+                        :main pwa-clojure.hello
+                        :optimizations :advanced
+                        :pretty-print true}}
+            {:source-paths ["src-svc"]
+             :compiler {:output-to "resources/public/service-worker.js"
+                        :main pwa-clojure.service-worker
+                        :optimizations :advanced
                         :pretty-print true}}]}
   :ring {:handler pwa-clojure.app/app})
