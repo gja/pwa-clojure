@@ -19,3 +19,7 @@
                (if (:url old)
                  (push-state (:url new))
                  (replace-state (:url new))))))
+
+(set! (-> js/window .-onpopstate)
+      (fn [event]
+        (pwa-clojure.main/move-to-page js/window.location.pathname)))

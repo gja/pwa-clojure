@@ -8,7 +8,7 @@
   nil)
 
 (rum/defc pwa-link [{:keys [href] :as params} children]
-  (into [:a (assoc params :on-click #(navigate e href))]
+  (into [:a (assoc params :on-click #(navigate % href))]
         children))
 
 (rum/defc home-component [data]
