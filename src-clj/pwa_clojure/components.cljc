@@ -4,7 +4,7 @@
 (defn- navigate [e url]
   #?@(:cljs
       [(.preventDefault e)
-       (pwa-clojure.main/move-to-page url)])
+       (pwa-clojure.navigation/move-to-page url)])
   nil)
 
 (rum/defc pwa-link [{:keys [href] :as params} children]
