@@ -8,9 +8,9 @@
                  [rum "0.10.7"]]
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-ring "0.8.7"]]
-  :cljsbuild {
-    :builds [{:source-paths ["src-cljs"]
-              :compiler {:output-to "resources/public/js/main.js"
-                         :optimizations :whitespace
-                         :pretty-print true}}]}
-  :ring {:handler pwa-clojure.routes/app})
+  :cljsbuild
+  {:builds [{:source-paths ["src-cljs"]
+             :compiler {:output-to "resources/public/js/main.js"
+                        :optimizations :whitespace
+                        :pretty-print true}}]}
+  :ring {:handler pwa-clojure.app/app})

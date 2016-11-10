@@ -1,16 +1,14 @@
 (ns pwa-clojure.views
   (:require [hiccup.page :refer [html5 include-js]]
+            [pwa-clojure.components :as components]
             [rum.core :as rum]))
-
-(rum/defc index-component [title]
-  [:h1 title])
 
 (defn index-page [_]
   {:body
    (html5
     [:head
-     [:title "Hello World"]
-     (include-js "/js/main.js")]
+     [:title "Hello World"]]
     [:body
-     [:div.container
-      (rum/render-html (index-component "Hello, World!"))]])})
+     [:div#container
+      (rum/render-html (components/index-component "Hello, World!"))]
+     (include-js "/js/main.js")])})
