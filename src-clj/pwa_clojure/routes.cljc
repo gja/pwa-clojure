@@ -1,7 +1,11 @@
 (ns pwa-clojure.routes)
 
 (def pwa-routes
-  ["/" :index])
+  [""
+   {"/" :home-page
+    ["/movie/" :movie-id] :movie-page}])
 
 (def api-routes
-  ["/api/something" :awesome])
+  ["/api"
+   {"/movies" :movies
+    ["/movies/" :movie-id] :movie}])

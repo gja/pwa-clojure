@@ -5,13 +5,14 @@
                  [org.clojure/clojurescript "1.9.293"]
                  [bidi "2.0.13"]
                  [hiccup "1.0.4"]
+                 [cheshire "5.6.3"]
                  [rum "0.10.7"]]
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-ring "0.8.7"]]
   :cljsbuild
   {:builds [{:source-paths ["src-cljs"]
              :compiler {:output-to "resources/public/js/main.js"
-                        :main pwa-clojure.hello
+                        :main pwa-clojure.main
                         :optimizations :advanced
                         :pretty-print true}}
             {:source-paths ["src-svc"]

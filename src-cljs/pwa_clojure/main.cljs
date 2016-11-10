@@ -1,4 +1,4 @@
-(ns pwa-clojure.hello
+(ns pwa-clojure.main
   (:require [bidi.bidi :as bidi]
             [pwa-clojure.app-state :as app-state]
             [pwa-clojure.components :as components]
@@ -22,5 +22,8 @@
 
 (defn- test-clj-app []
   (start-cljs-app {:title "Hello, World!"}))
+
+(defn- ^:export foobar [route]
+  (.log js/console (clj->js (bidi/match-route routes/api-routes route))))
 
 (test-clj-app)

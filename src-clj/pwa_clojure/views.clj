@@ -3,13 +3,13 @@
             [pwa-clojure.components :as components]
             [rum.core :as rum]))
 
-(defn index-page [_]
+(defn home-page [_]
   {:body
    (html5
     [:head
      [:title "Hello World"]]
     [:body
      [:div#container
-      (rum/render-html (components/pwa-component {:handler :index
+      (rum/render-html (components/pwa-component {:handler :home-page
                                                   :data {:title "Hello, World!"}}))]
      (include-js "/js/main.js")])})

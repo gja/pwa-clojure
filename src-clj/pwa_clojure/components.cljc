@@ -6,4 +6,4 @@
 
 (rum/defc pwa-component [{:keys [handler data]}]
   (case handler
-    :index (index-component data)))
+    :home-page (index-component data)))

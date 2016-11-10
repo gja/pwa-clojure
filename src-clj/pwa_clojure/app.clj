@@ -7,7 +7,7 @@
 
 (defn- pwa-route-handler [handler]
   (case handler
-    :index views/index-page))
+    :home-page views/home-page))
 
 (defn- api-route-handler [api]
   (fn [_]
