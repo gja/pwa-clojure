@@ -27,5 +27,7 @@ There is lots of scope for expansion, especially fingerprinting assets, with a m
  * Server side
  * Page -> Page (load first, then component)
  * PWA -> Paga (can be done the same)
+* Use a single store for state (redux)
+* Also, why not use that for browser state too?
 * Service Workers in Clojure
 * (view-for :handler), (data-for :handler)
