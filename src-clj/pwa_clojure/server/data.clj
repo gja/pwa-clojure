@@ -15,7 +15,7 @@
 
 (defn- characters [args]
   {:characters
-   (->> (http/get "http://anapioficeandfire.com/api/characters?pageSize=100")
+   (->> (http/get "http://anapioficeandfire.com/api/characters?pageSize=50&page=2")
         :body
         parse-json
         (map fix-character)

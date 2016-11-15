@@ -14,8 +14,13 @@
   (pages/pwa-component (:handler (rum/react app-state/app-state))
                        (:data (rum/react app-state/app-state))))
 
+(defonce app-loaded (atom false))
+
 (defn ^:export start-cljs-app []
   (navigation/move-to-page (get-current-path)
-                           #(rum/mount (reactive-component) (get-container))))
+                           (fn []
+                             (when-not @app-loaded
+                               (reset! app-loaded true)
+                               (rum/mount (reactive-component) (get-container))))))
 
 (start-cljs-app)
