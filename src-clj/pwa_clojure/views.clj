@@ -10,6 +10,7 @@
    (html5
     [:head
      [:title title]
+     [:link {:rel "stylesheet" :src "/css/main.css"}]
      (seq seo-fields)]
     [:body
      [:div#container (rum/render-html component)]

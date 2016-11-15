@@ -5,7 +5,6 @@
             [clojure.string :as str]))
 
 (def app-cache-name "pwa-clojure-app")
-(def data-cache-name "pwa-clojure-data")
 
 (defn- purge-old-caches [e]
   (-> js/caches
@@ -18,8 +17,8 @@
                     js/Promise.all)))))
 
 (def files-to-cache ["/js/main.js"
+                     "/css/main.css"
                      "/shell.html"])
-
 
 (defn- install-service-worker [e]
   (js/console.log "[ServiceWorker] Installing")

@@ -5,9 +5,6 @@
             [pwa-clojure.app-state :as app-state]
             [pwa-clojure.client.data :as data]))
 
-(defn- fetch-data [handler params]
-  {:name "Character of the Year!"})
-
 (defn ^:export move-to-page
   ([path]
    (move-to-page path (constantly nil)))
