@@ -15,7 +15,7 @@
                        (:data (rum/react app-state/app-state))))
 
 (defn ^:export start-cljs-app []
-  (navigation/move-to-page (get-current-path))
-  (rum/mount (reactive-component) (get-container)))
+  (navigation/move-to-page (get-current-path)
+                           #(rum/mount (reactive-component) (get-container))))
 
 (start-cljs-app)

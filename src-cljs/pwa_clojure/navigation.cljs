@@ -2,18 +2,24 @@
   (:require [bidi.bidi :as bidi]
             [pwa-clojure.pages :as pages]
             [pwa-clojure.routes :as routes]
-            [pwa-clojure.app-state :as app-state]))
+            [pwa-clojure.app-state :as app-state]
+            [pwa-clojure.client.data :as data]))
 
-(defn- fetch-data [handler route-params]
+(defn- fetch-data [handler params]
   {:name "Character of the Year!"})
 
-(defn ^:export move-to-page [path]
-  (let [{:keys [handler route-params]} (bidi/match-route routes/pwa-routes path)
-        data (fetch-data handler route-params)]
-    (reset! app-state/app-state {:handler handler
-                                 :data data
-                                 :url path
-                                 :title (pages/title handler data)})))
+(defn ^:export move-to-page
+  ([path]
+   (move-to-page path (constantly nil)))
+  ([path callback]
+   (let [{:keys [handler route-params]} (bidi/match-route routes/pwa-routes path)
+         [data-handler data-args] (first (pages/data-requirements handler route-params))
+         data (data/load-data data-handler data-args identity)]
+     (reset! app-state/app-state {:handler handler
+                                  :data data
+                                  :url path
+                                  :title (pages/title handler data)})
+     (callback))))
 
 (defn- update-title [title]
   (set! js/window.location.title title))
