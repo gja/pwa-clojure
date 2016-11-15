@@ -11,7 +11,7 @@
       .keys
       (.then (fn [keys]
                (->> keys
-                    (map #(when-not (contains? #{app-cache-name data-cache-name} %)
+                    (map #(when-not (contains? #{app-cache-name} %)
                             (.delete js/caches %)))
                     clj->js
                     js/Promise.all)))))
@@ -45,7 +45,8 @@
 
 (defn- fetch-event [e]
   (js/console.log "[ServiceWorker] Fetch" (-> e .-request .-url))
-  (let [url (-> e .-request .-url url/url)]
+  (let [request (.-request e)
+        url (-> request .-url url/url)]
     (case (:host url)
       ("localhost" "pwa-clojure.staging.quintype.io")
       (fetch-cached (:path url) e)
@@ -53,7 +54,10 @@
       "my-images.net"
       (comment "Yes, you can cache images from other domains too!")
 
-      (js/fetch (.-request e)))))
+      (-> js/caches
+          (.match request)
+          (.then (fn [response]
+                   (or response (js/fetch request))))))))
 
 (.addEventListener js/self "install" #(.waitUntil % (install-service-worker %)))
 (.addEventListener js/self "fetch" #(.respondWith % (fetch-event %)))
