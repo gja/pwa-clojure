@@ -3,16 +3,16 @@
             [rum.core :as rum]))
 
 (def pages
-  {:home-page {:data-fn (constantly [[:characters]])
+  {:home-page {:data-fn (constantly [[:characters {}]])
                :component components/home-component
                :title-fn (constantly "Super Characters")}
-   :character-page {:data-fn #(vec [:character :character-id (:character-id %)])
+   :character-page {:data-fn #(vector [:character {:character-id (:character-id %)}])
                     :component components/character-component
-                    :title-fn (constantly "Super Characters")}})
+                    :title-fn #(str "Super Characters - " (get-in % [:character :name]))}})
 
-(defn data-requirements [handler route-params]
+(defn data-requirements [handler params]
   (let [data-fn (get-in pages [handler :data-fn])]
-    (data-fn route-params)))
+    (data-fn params)))
 
 (rum/defc pwa-component [handler data]
   (let [component (get-in pages [handler :component])]

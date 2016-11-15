@@ -1,7 +1,8 @@
 (ns pwa-clojure.views
   (:require [hiccup.page :refer [html5 include-js]]
             [pwa-clojure.pages :as pages]
-            [rum.core :as rum]))
+            [rum.core :as rum]
+            [pwa-clojure.server.data :as data]))
 
 (defn layout [component title seo-fields]
   {:body
@@ -13,7 +14,13 @@
      [:div#container (rum/render-html component)]
      (include-js "/js/main.js")])})
 
+(defn- seo-fields [handler data]
+  (case handler
+    :home-page [[:meta {:name "description" :content "Home Page"}]]
+    []))
+
 (defn pwa-page [handler {:keys [route-params]}]
-  (let [data {:title "Hello, World!"}
+  (let [[data-handler data-args] (first (pages/data-requirements handler route-params))
+        data (data/load-data data-handler data-args)
         component (pages/pwa-component handler data)]
-    (layout component (pages/title handler data) [])))
+    (layout component (pages/title handler data) (seo-fields handler data))))

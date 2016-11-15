@@ -14,17 +14,19 @@
   (json/parse-string x keyword))
 
 (defn- characters [args]
-  (->> (http/get "http://anapioficeandfire.com/api/characters?pageSize=100")
-       :body
-       parse-json
-       (map fix-character)
-       (map #(select-keys % [:id :name]))))
+  {:characters
+   (->> (http/get "http://anapioficeandfire.com/api/characters?pageSize=100")
+        :body
+        parse-json
+        (map fix-character)
+        (map #(select-keys % [:id :name])))})
 
 (defn- character [{:keys [character-id]}]
-  (->> (http/get (str "http://anapioficeandfire.com/api/characters/" character-id))
-       :body
-       parse-json
-       fix-character))
+  {:character
+   (->> (http/get (str "http://anapioficeandfire.com/api/characters/" character-id))
+        :body
+        parse-json
+        fix-character)})
 
 (defn load-data [handler args]
   (case handler
