@@ -1,11 +1,9 @@
 (ns pwa-clojure.components
-  (:require [rum.core :as rum]))
+  (:require [rum.core :as rum]
+            #?@(:cljs [[pwa-clojure.actions :as actions]])))
 
-(defn- navigate [e url]
-  #?@(:cljs
-      [(.preventDefault e)
-       (pwa-clojure.navigation/move-to-page url)])
-  nil)
+(def navigate #?(:cljs actions/navigate :clj (constantly nil)))
+(def download-character #?(:cljs actions/download-character :clj (constantly nil)))
 
 (rum/defc pwa-link [{:keys [href] :as params} children]
   (into [:a (assoc params :on-click #(navigate % href))]
@@ -17,7 +15,10 @@
    [:p "Here are this weeks's top characters"]
    [:ul {}
     (map (fn [{:keys [id name]}]
-           [:li {} (pwa-link {:href (str "/character/" id) :key id} name)])
+           [:li {}
+            (pwa-link {:href (str "/character/" id) :key id} name)
+            " "
+            [:a {:href "javascript:void(0)" :on-click #(download-character id)} "Download"]])
          characters)]])
 
 (rum/defc character-component [{:keys [character]}]

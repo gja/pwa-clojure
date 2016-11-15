@@ -38,3 +38,10 @@
     (if (and js/window.caches js/fetch)
       (-> (cached-get route) (.then callback))
       (fallback-get route callback))))
+
+(defn prefetch [handler & args]
+  (let [route (apply bidi/path-for routes/api-routes handler args)]
+    (when js/window.caches
+      (-> js/window.caches
+          (.open data-cache-name)
+          (.then #(.add % route))))))
