@@ -6,6 +6,7 @@
                  [bidi "2.0.13"]
                  [hiccup "1.0.4"]
                  [cheshire "5.6.3"]
+                 [clj-http "2.3.0"]
                  [rum "0.10.7"]]
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-ring "0.8.7"]]
@@ -20,4 +21,5 @@
                         :main pwa-clojure.service-worker
                         :optimizations :advanced
                         :pretty-print true}}]}
-  :ring {:handler pwa-clojure.app/app})
+  :ring {:handler pwa-clojure.app/app
+         :nrepl {:start? true}})

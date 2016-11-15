@@ -7,5 +7,5 @@
 
 (def api-routes
   ["/api"
-   {"/movies" :movies
-    ["/movies/" :movie-id] :movie}])
+   {"/characters" :characters
+    ["/characters/" :character-id] :character}])
