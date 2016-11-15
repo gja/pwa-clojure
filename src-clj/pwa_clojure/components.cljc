@@ -11,16 +11,23 @@
   (into [:a (assoc params :on-click #(navigate % href))]
         children))
 
-(rum/defc home-component [data]
+(rum/defc home-component [{:keys [characters]}]
   [:div
    [:h1 "Game of Thrones Characters"]
    [:p "Here are this weeks's top characters"]
    [:ul {}
-    (map (fn [name]
-           (pwa-link {:href (str "/character/" name) :key name} name))
-         ["1" "2" "3"])]])
+    (map (fn [{:keys [id name]}]
+           [:li {} (pwa-link {:href (str "/character/" id) :key id} name)])
+         characters)]])
 
-(rum/defc character-component [{:keys [name]}]
+(rum/defc character-component [{:keys [character]}]
   [:div
-   [:h1 "Awesome Characters - " name]
-   [:p "Here is what people are saying"]])
+   [:h1 "Awesome Characters - " (:name character)]
+
+   [:p "Aliases"]
+   [:ul {}
+    (map #(vector :li {} %) (:aliases character))]
+
+   [:p "Seasons"]
+   [:ul {}
+    (map #(vector :li {} %) (:tvSeries character))]])

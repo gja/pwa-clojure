@@ -4,10 +4,10 @@
 
 (def pages
   {:home-page {:data-fn (constantly [[:characters {}]])
-               :component components/home-component
+               :component #'components/home-component
                :title-fn (constantly "Super Characters")}
    :character-page {:data-fn #(vector [:character {:character-id (:character-id %)}])
-                    :component components/character-component
+                    :component #'components/character-component
                     :title-fn #(str "Super Characters - " (get-in % [:character :name]))}})
 
 (defn data-requirements [handler params]
