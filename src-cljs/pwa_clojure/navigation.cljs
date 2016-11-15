@@ -13,13 +13,14 @@
    (move-to-page path (constantly nil)))
   ([path callback]
    (let [{:keys [handler route-params]} (bidi/match-route routes/pwa-routes path)
-         [data-handler data-args] (first (pages/data-requirements handler route-params))
-         data (data/load-data data-handler data-args identity)]
-     (reset! app-state/app-state {:handler handler
-                                  :data data
-                                  :url path
-                                  :title (pages/title handler data)})
-     (callback))))
+         [data-handler data-args] (first (pages/data-requirements handler route-params))]
+     (data/load-data data-handler data-args
+                     (fn [data]
+                       (reset! app-state/app-state {:handler handler
+                                                    :data data
+                                                    :url path
+                                                    :title (pages/title handler data)})
+                       (callback))))))
 
 (defn- update-title [title]
   (set! js/window.location.title title))
