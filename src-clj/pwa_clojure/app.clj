@@ -4,7 +4,8 @@
             [pwa-clojure.routes :as routes]
             [pwa-clojure.server.bidi-handler :as bhandler]
             [pwa-clojure.views :as views]
-            [pwa-clojure.api :as api]))
+            [pwa-clojure.api :as api]
+            [ring.middleware.content-type :as content-type]))
 
 (defn- pwa-route-handler [handler]
   #(views/pwa-page handler %))
@@ -18,4 +19,5 @@
       (bhandler/make-bidi-handler routes/pwa-routes #'pwa-route-handler)
       (bhandler/make-bidi-handler routes/api-routes #'api/handler)
       wrap-base-url
-      (resources/wrap-resource "public")))
+      (resources/wrap-resource "public")
+      (content-type/wrap-content-type)))

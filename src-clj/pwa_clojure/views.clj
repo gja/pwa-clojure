@@ -5,7 +5,8 @@
             [pwa-clojure.server.data :as data]))
 
 (defn layout [component title seo-fields]
-  {:body
+  {:headers {"Content-Type" "text/html"}
+   :body
    (html5
     [:head
      [:title title]
