@@ -3,12 +3,12 @@
             [rum.core :as rum]))
 
 (def pages
-  {:home-page {:data-fn (constantly [[:movies]])
+  {:home-page {:data-fn (constantly [[:characters]])
                :component components/home-component
-               :title-fn (constantly "Super Movies")}
-   :movie-page {:data-fn #(vec [:movie :movie-id (:movie-id %)])
-                :component components/movie-component
-                :title-fn (constantly "Super Movie")}})
+               :title-fn (constantly "Super Characters")}
+   :character-page {:data-fn #(vec [:character :character-id (:character-id %)])
+                    :component components/character-component
+                    :title-fn (constantly "Super Characters")}})
 
 (defn data-requirements [handler route-params]
   (let [data-fn (get-in pages [handler :data-fn])]

@@ -5,7 +5,7 @@
             [pwa-clojure.app-state :as app-state]))
 
 (defn- fetch-data [handler route-params]
-  {:name "Movie of the Year!"})
+  {:name "Character of the Year!"})
 
 (defn ^:export move-to-page [path]
   (let [{:keys [handler route-params]} (bidi/match-route routes/pwa-routes path)

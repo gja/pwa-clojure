@@ -13,14 +13,14 @@
 
 (rum/defc home-component [data]
   [:div
-   [:h1 "Welcome To Super Movies"]
-   [:p "Here are this weeks's top movies"]
+   [:h1 "Game of Thrones Characters"]
+   [:p "Here are this weeks's top characters"]
    [:ul {}
     (map (fn [name]
-           (pwa-link {:href (str "/movie/" name) :key name} name))
-         ["Foo" "Bar" "Baz"])]])
+           (pwa-link {:href (str "/character/" name) :key name} name))
+         ["1" "2" "3"])]])
 
-(rum/defc movie-component [{:keys [name]}]
+(rum/defc character-component [{:keys [name]}]
   [:div
-   [:h1 "Awesome Movies - " name]
+   [:h1 "Awesome Characters - " name]
    [:p "Here is what people are saying"]])

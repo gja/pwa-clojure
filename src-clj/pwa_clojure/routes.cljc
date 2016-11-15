@@ -3,7 +3,7 @@
 (def pwa-routes
   [""
    {"/" :home-page
-    ["/movie/" :movie-id] :movie-page}])
+    ["/character/" :character-id] :character-page}])
 
 (def api-routes
   ["/api"
