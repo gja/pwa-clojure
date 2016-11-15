@@ -24,3 +24,10 @@
         data (data/load-data data-handler data-args)
         component (pages/pwa-component handler data)]
     (layout component (pages/title handler data) (seo-fields handler data))))
+
+(rum/defc empty-component []
+  [:div.app-loading
+   [:p "Please be patient"]])
+
+(defn shell-page [request]
+  (layout (empty-component) "PWA App!" []))

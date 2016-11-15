@@ -9,8 +9,12 @@
 (defn- pwa-route-handler [handler]
   #(views/pwa-page handler %))
 
+(def server-only-routes
+  ["/shell.html" #'views/shell-page])
+
 (def app
   (-> (constantly {:status 404, :body "not found"})
+      (bhandler/make-bidi-handler server-only-routes)
       (bhandler/make-bidi-handler routes/pwa-routes #'pwa-route-handler)
       (bhandler/make-bidi-handler routes/api-routes #'api/handler)
       wrap-base-url
