@@ -7,6 +7,7 @@
                  [hiccup "1.0.4"]
                  [cheshire "5.6.3"]
                  [clj-http "2.3.0"]
+                 [com.cemerick/url "0.1.1"]
                  [cljs-ajax "0.5.8"]
                  [rum "0.10.7"]]
   :plugins [[lein-cljsbuild "1.1.4"]
