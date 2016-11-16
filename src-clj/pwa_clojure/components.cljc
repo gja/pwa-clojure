@@ -5,7 +5,7 @@
 (def navigate #?(:cljs actions/navigate :clj (constantly nil)))
 (def download-character #?(:cljs actions/download-character :clj (constantly nil)))
 
-(rum/defc pwa-link [{:keys [href] :as params} children]
+(rum/defc pwa-link [{:keys [href] :as params} & children]
   (into [:a (assoc params :on-click #(navigate % href))]
         children))
 
@@ -17,7 +17,6 @@
     (map (fn [{:keys [id name]}]
            [:li {}
             (pwa-link {:href (str "/character/" id) :key id} name)
-            " "
             [:a {:href "javascript:void(0)" :on-click #(download-character id)} "Download"]])
          characters)]])
 
