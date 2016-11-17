@@ -14,7 +14,10 @@
      [:link {:rel "stylesheet" :href "/css/main.css"}]
      (seq seo-fields)
      [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css?family=Cardo:400,700,400italic|Open+Sans:400,800"}]
-     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
+     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
+     [:meta {:name "apple-mobile-web-app-capable" :content "yes"}]
+     [:meta {:name "apple-mobile-web-app-status-bar-style" :content "black"}]
+     [:meta {:name "apple-mobile-web-app-title" :content "PWA of Thrones"}]]
     [:body
      [:div.container
       [:div#header-container
