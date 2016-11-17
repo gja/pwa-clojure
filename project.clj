@@ -6,12 +6,14 @@
                  [bidi "2.0.13"]
                  [hiccup "1.0.4"]
                  [cheshire "5.6.3"]
+                 [ring "1.5.0"]
                  [clj-http "2.3.0"]
                  [com.cemerick/url "0.1.1"]
                  [cljs-ajax "0.5.8"]
                  [rum "0.10.7"]]
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-ring "0.8.7"]]
+  :main pwa-clojure.main
   :cljsbuild
   {:builds [{:source-paths ["src-cljs"]
              :compiler {:output-to "resources/public/js/main.js"
