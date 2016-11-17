@@ -19,12 +19,12 @@
     [:li (pwa-link {:href "/character/529"} "Jamie Lannister")]]])
 
 (rum/defc home-component [{:keys [characters]}]
-  [:section
+  [:section.characters-grid
    [:ul {}
-    (map (fn [{:keys [id name]}]
+    (map (fn [{:keys [id name image]}]
            [:li.character {}
             [:figure.character-image-container
-             [:img {:src "http://vignette2.wikia.nocookie.net/gameofthrones/images/4/4c/JonSnowTightened-S4.jpg/revision/latest?cb=20140322183538"}]]
+             [:img {:src image}]]
             [:div.character-details
              [:h3.character-name (pwa-link {:href (str "/character/" id)} name)]
              [:button.character-download {:on-click #(download-character id)} "Download"]]])
