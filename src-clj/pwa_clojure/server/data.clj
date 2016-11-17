@@ -10,9 +10,9 @@
                  name
                  "Unknown")
          :image (case name
-                  "Jon Snow" "http://vignette2.wikia.nocookie.net/gameofthrones/images/4/4c/JonSnowTightened-S4.jpg/revision/latest?cb=20140322183538"
-                  "Daenerys Targaryen" "http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s5/daenarys-1024.jpg"
-                  "Jamie Lannister" "http://vignette4.wikia.nocookie.net/gameofthrones/images/c/c5/Jaime_s6_Ep08_.jpg/revision/latest?cb=20160616044155"
+                  "Jon Snow" "https://vignette2.wikia.nocookie.net/gameofthrones/images/4/4c/JonSnowTightened-S4.jpg/revision/latest?cb=20140322183538"
+                  "Daenerys Targaryen" "https://vignette2.wikia.nocookie.net/gameofthrones/images/2/28/Dany_finale_s6_winds_of_winter.jpg/revision/latest?cb=20160630224410"
+                  "Jamie Lannister" "https://vignette4.wikia.nocookie.net/gameofthrones/images/c/c5/Jaime_s6_Ep08_.jpg/revision/latest?cb=20160616044155"
                   "https://upload.wikimedia.org/wikipedia/en/f/fb/White_Walker-Game_of_Thrones-S02-E10.jpg")))
 
 (defn parse-json [x]

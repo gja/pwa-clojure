@@ -11,7 +11,8 @@
   #(views/pwa-page handler %))
 
 (def server-only-routes
-  ["/shell.html" #'views/shell-page])
+  ["/shell.html" #'views/shell-page
+   "/ping" (constantly {:status "200" :body "PONG"})])
 
 (def app
   (-> (constantly {:status 404, :body "not found"})
