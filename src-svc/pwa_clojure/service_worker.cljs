@@ -18,7 +18,9 @@
 
 (def files-to-cache ["/js/main.js"
                      "/css/main.css"
-                     "/shell.html"])
+                     "/css/pw_maze_white.png"
+                     "/shell.html"
+                     "https://fonts.googleapis.com/css?family=Cardo:400,700,400italic|Open+Sans:400,800"])
 
 (defn- install-service-worker [e]
   (js/console.log "[ServiceWorker] Installing")
@@ -26,7 +28,9 @@
       (.open app-cache-name)
       (.then (fn [cache]
                (js/console.log "[ServiceWorker] Caching Shell")
-               (.addAll cache (clj->js files-to-cache))))))
+               (.addAll cache (clj->js files-to-cache))))
+      (.then (fn []
+               (js/console.log "[ServiceWorker] Successfully Installed")))))
 
 (defn- return-shell [e]
   (js/console.log "[ServiceWorker] Cached Page")

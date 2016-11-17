@@ -9,15 +9,24 @@
   (into [:a (assoc params :on-click #(navigate % href))]
         children))
 
+(rum/defc main-navigation []
+  [:nav#main-navigation
+   [:ul.main-navigation
+    [:li [:a {:href "#hide-navigation" :class "toggle on"} [:span]]]
+    [:li (pwa-link {:href "/"} "Home")]
+    [:li (pwa-link {:href "/character/531"} "Jon Snow")]
+    [:li (pwa-link {:href "/character/1303"} "Daenerys Targaryen")]]])
+
 (rum/defc home-component [{:keys [characters]}]
-  [:div
-   [:h1 "Game of Thrones Characters"]
-   [:p "Here are this weeks's top characters"]
+  [:section
    [:ul {}
     (map (fn [{:keys [id name]}]
-           [:li {}
-            (pwa-link {:href (str "/character/" id) :key id} name)
-            [:a {:href "javascript:void(0)" :on-click #(download-character id)} "Download"]])
+           [:li.character {}
+            [:figure.character-image-container
+             [:img {:src "http://vignette2.wikia.nocookie.net/gameofthrones/images/4/4c/JonSnowTightened-S4.jpg/revision/latest?cb=20140322183538"}]]
+            [:div.character-details
+             [:h3.character-name name]
+             [:button.character-download {:on-click #(download-character id)} "Download"]]])
          characters)]])
 
 (rum/defc character-component [{:keys [character]}]
