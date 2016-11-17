@@ -20,6 +20,7 @@
                      "/css/main.css"
                      "/css/pw_maze_white.png"
                      "/shell.html"
+
                      "https://fonts.googleapis.com/css?family=Cardo:400,700,400italic|Open+Sans:400,800"])
 
 (defn- install-service-worker [e]
@@ -39,13 +40,19 @@
       (.then (fn [response]
                (or response (js/fetch (.-request e)))))))
 
-(defn- fetch-cached [path e]
+(defn- fetch-cached [request]
+  (-> js/caches
+      (.match request)
+      (.then (fn [response]
+               (or response (js/fetch request))))))
+
+(defn- fetch-page-or-cached [path e]
   (cond
     (bidi/match-route routes/pwa-routes path)
     (return-shell e)
 
     :else
-    (js/fetch (.-request e))))
+    (fetch-cached (.-request e))))
 
 (defn- fetch-event [e]
   (js/console.log "[ServiceWorker] Fetch" (-> e .-request .-url))
@@ -53,15 +60,12 @@
         url (-> request .-url url/url)]
     (case (:host url)
       ("localhost" "pwa-clojure.staging.quintype.io")
-      (fetch-cached (:path url) e)
+      (fetch-page-or-cached (:path url) e)
 
       "my-images.net"
       (comment "Yes, you can cache images from other domains too!")
 
-      (-> js/caches
-          (.match request)
-          (.then (fn [response]
-                   (or response (js/fetch request))))))))
+      (fetch-cached request))))
 
 (.addEventListener js/self "install" #(.waitUntil % (install-service-worker %)))
 (.addEventListener js/self "fetch" #(.respondWith % (fetch-event %)))

@@ -14,8 +14,9 @@
    [:ul.main-navigation
     [:li [:a {:href "#hide-navigation" :class "toggle on"} [:span]]]
     [:li (pwa-link {:href "/"} "Home")]
-    [:li (pwa-link {:href "/character/531"} "Jon Snow")]
-    [:li (pwa-link {:href "/character/1303"} "Daenerys Targaryen")]]])
+    [:li (pwa-link {:href "/character/583"} "Jon Snow")]
+    [:li (pwa-link {:href "/character/1303"} "Daenerys Targaryen")]
+    [:li (pwa-link {:href "/character/529"} "Jamie Lannister")]]])
 
 (rum/defc home-component [{:keys [characters]}]
   [:section
@@ -25,7 +26,7 @@
             [:figure.character-image-container
              [:img {:src "http://vignette2.wikia.nocookie.net/gameofthrones/images/4/4c/JonSnowTightened-S4.jpg/revision/latest?cb=20140322183538"}]]
             [:div.character-details
-             [:h3.character-name name]
+             [:h3.character-name (pwa-link {:href (str "/character/" id)} name)]
              [:button.character-download {:on-click #(download-character id)} "Download"]]])
          characters)]])
 

@@ -37,8 +37,7 @@
     (layout component (pages/title handler data) (seo-fields handler data))))
 
 (rum/defc empty-component []
-  [:div.app-loading
-   [:p "Please be patient"]])
+  [:div.app-loading])
 
 (defn shell-page [request]
   (layout (empty-component) "PWA App!" []))

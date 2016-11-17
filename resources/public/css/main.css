@@ -168,6 +168,10 @@ h1 span {
     text-transform: uppercase;
 }
 
+.character-name a {
+    color: white;
+}
+
 .character-details {
     padding: 10px;
     background: black;
@@ -195,6 +199,7 @@ h1 span {
 
 a {
     text-decoration: none;
+    font-weight: normal;
 }
 
 @media only screen and (min-width: 750px)  {
@@ -205,4 +210,7 @@ a {
     .character-image-container img {
 	height: 300px;
     }
+}
+
+.app-loading {
 }

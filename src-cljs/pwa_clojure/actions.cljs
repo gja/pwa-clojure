@@ -2,6 +2,7 @@
 
 (defn- navigate [e url]
   (.preventDefault e)
+  (aset js/window.location "hash" "")
   (pwa-clojure.navigation/move-to-page url))
 
 (defn- download-character [id]
