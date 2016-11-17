@@ -210,10 +210,29 @@ a {
     .character-image-container img {
 	height: 300px;
     }
+
+    .character-info {
+	width: 40%;
+	margin: 20px 10px;
+	margin-left: 6%;
+    }
+
+    .character-page .character {
+	margin-left: 16%;
+    }
 }
 
 .app-loading {
     width: 100%;
     height: 300px;
     background: url(/css/gears.svg) no-repeat center center;
+}
+
+.character-info {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.character-info h3 {
+    margin: 0;
 }

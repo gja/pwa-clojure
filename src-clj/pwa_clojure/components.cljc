@@ -31,13 +31,18 @@
          characters)]])
 
 (rum/defc character-component [{:keys [character]}]
-  [:div
-   [:h1 "Awesome Characters - " (:name character)]
+  [:div.character-page
+   [:div.character
+    [:figure.character-image-container
+     [:img {:src (:image character)}]]
+    [:div.character-details
+     [:h3.character-name (:name character)]]]
 
-   [:p "Aliases"]
-   [:ul {}
-    (map #(vector :li {} %) (:aliases character))]
+   [:div.character-info
+    [:h3 "Aliases"]
+    [:ul {}
+     (map #(vector :li {} %) (:aliases character))]
 
-   [:p "Seasons"]
-   [:ul {}
-    (map #(vector :li {} %) (:tvSeries character))]])
+    [:h3 "Seasons"]
+    [:ul {}
+     (map #(vector :li {} %) (:tvSeries character))]]])
