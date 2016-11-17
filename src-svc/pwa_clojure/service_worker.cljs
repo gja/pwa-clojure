@@ -19,6 +19,7 @@
 (def files-to-cache ["/js/main.js"
                      "/css/main.css"
                      "/css/pw_maze_white.png"
+                     "/css/gears.svg"
                      "/shell.html"
 
                      "https://fonts.googleapis.com/css?family=Cardo:400,700,400italic|Open+Sans:400,800"])

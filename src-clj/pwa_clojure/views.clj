@@ -21,7 +21,7 @@
        (rum/render-html (components/main-navigation))]
       [:header
        [:a.toggle {:href "#main-navigation" :title "menu"} [:span]]
-       [:h1.title "Game of Thrones"]]
+       [:h1.title "PWA of Thrones"]]
       [:div#container (rum/render-html component)]]
      (include-js "/js/main.js")])})
 
