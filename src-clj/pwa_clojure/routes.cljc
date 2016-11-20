@@ -2,10 +2,10 @@
 
 (def pwa-routes
   [""
-   {"/" :home-page
-    ["/character/" :character-id] :character-page}])
+   {["/character/" :character-id] :character-page
+    "/" :home-page}])
 
 (def api-routes
   ["/api"
-   {"/characters" :characters
-    ["/characters/" :character-id] :character}])
+   {["/characters/" :character-id] :character
+    "/characters" :characters}])
