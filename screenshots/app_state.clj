@@ -9,18 +9,17 @@
                  (push-state (:url new))
                  (replace-state (:url new))))))
 
+(set! js/window.onpopstate
+      (fn [event]
+        (move-to-page js/window.location.pathname)))
+
+
+
+
 (rum/defc reactive-component < rum/reactive []
   (pages/pwa-component (:handler (rum/react app-state/app-state))
                        (:data (rum/react app-state/app-state))))
 
-(defn load-app []
-  (rum/mount (reactive-component) (get-container "container"))
-  (rum/mount (components/main-navigation) (get-container "header-container")))
-
 (defn ^:export start-cljs-app []
   (navigation/move-to-page (get-current-path) load-app)
   (make-progressive!))
-
-(set! js/window.onpopstate
-      (fn [event]
-        (move-to-page js/window.location.pathname)))
