@@ -1,3 +1,5 @@
+(def app-cache-name "pwa-clojure-app")
+
 (def files-to-cache ["/js/main.js"
                      "/css/main.css"
                      "/css/pw_maze_white.png"
