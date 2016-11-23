@@ -22,6 +22,8 @@
                      "/css/gears.svg"
                      "/shell.html"
 
+                     "/api/characters"
+
                      "https://fonts.googleapis.com/css?family=Cardo:400,700,400italic|Open+Sans:400,800"])
 
 (defn- install-service-worker [e]
