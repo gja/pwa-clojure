@@ -1,10 +1,13 @@
 FROM clojure
-WORKDIR /usr/src/app
 
-COPY project.clj /usr/src/app
+RUN mkdir -p /app
+
+WORKDIR /app
+
+COPY project.clj /app
 RUN lein deps
 
-COPY . /usr/src/app
+COPY . /app
 
 RUN lein cljsbuild once
 CMD ["lein", "run"]
